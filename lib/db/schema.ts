@@ -14,6 +14,11 @@ import {
 import { relations } from 'drizzle-orm';
 
 
+export const notes = pgTable ( 'notes', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', {length: 50 })
+  .notNull()
+});
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -294,6 +299,9 @@ export const activityLogsRelations = relations(activityLogs, ({ one }) => ({
     references: [users.id],
   }),
 }));
+
+export type InserNotes = typeof notes.$inferInsert;
+export type SelectNotes = typeof notes.$inferSelect;
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;

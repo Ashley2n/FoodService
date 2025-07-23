@@ -3,11 +3,12 @@ import postgres from 'postgres';
 import * as schema from './schema';
 import dotenv from 'dotenv';
 
-dotenv.config();
+//dotenv.config({path: "env.development.local"});
+dotenv.config({path: '.env'});
 
-if (!process.env.POSTGRES_URL) {
+if (!process.env.DATABASE_URL) {
   throw new Error('POSTGRES_URL environment variable is not set');
 }
 
-export const client = postgres(process.env.POSTGRES_URL);
+export const client = postgres(process.env.DATABASE_URL);
 export const db = drizzle(client, { schema });

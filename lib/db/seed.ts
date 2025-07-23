@@ -1,6 +1,8 @@
+import { title } from "process";
 import { stripe } from "../payments/stripe";
 import { db } from "./drizzle";
 import {
+  notes,
   users,
   teams,
   teamMembers,
@@ -106,7 +108,14 @@ async function seed() {
     createdAt: new Date(),
     updatedAt: new Date(+2),
   });
+  
+  const [note] = await db
+  .insert(notes)
+  .values({ 
+    title: "Hello this is a test"
+  }).returning();
 
+  
   // dish table
   const existingDish = await db
     .select()

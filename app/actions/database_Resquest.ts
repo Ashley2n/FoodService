@@ -1,11 +1,8 @@
 "use server";
 
 import { db } from "@/lib/db/drizzle";
-import { dishes } from "@/lib/db/schema";
-import { error } from "console";
-import { PgSerialBuilderInitial } from "drizzle-orm/pg-core";
+import { dishes, notes } from "@/lib/db/schema";
 import { redirect } from "next/navigation";
-import { PostgresError } from "postgres";
 
 export async function createDishForHandling(formData: FormData){
     // Include form validation with zod
@@ -23,4 +20,16 @@ export async function createDishForHandling(formData: FormData){
         console.log(err);
     };
     redirect("/menu");
+}
+
+export async function getAllNotes(){
+  
+    try {
+      const response = await db.select().from(notes);
+      return response
+    } catch (error) {
+      console.error("Failed to fetch Notes", error)
+    //   console.log(error);
+      return [];
+    }
 }
