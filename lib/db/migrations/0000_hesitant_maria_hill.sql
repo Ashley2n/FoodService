@@ -74,6 +74,7 @@ CREATE TABLE "dishes" (
 	"active" boolean NOT NULL,
 	"image_url" text,
 	"price" numeric,
+	"tags" varchar(255),
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now(),
 	CONSTRAINT "dishes_name_unique" UNIQUE("name")

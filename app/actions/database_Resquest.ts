@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db/drizzle";
 import { dishes, notes } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
 export async function createDishForHandling(formData: FormData){
@@ -32,4 +33,33 @@ export async function getAllNotes(){
     //   console.log(error);
       return [];
     }
+}
+
+
+export async function GetAllDishes() {
+    try{
+        const res = await db
+        .select()
+        .from(dishes);
+        // console.log(res);
+        return res;
+    } catch(err){
+        console.log(err);
+        throw err;
+    } 
+}
+
+export async function GetDishById( id : number ) {
+    try{
+        const [res] = await db
+        .select()
+        .from(dishes)
+        .where(eq(dishes.id, id));
+
+        return res;
+
+    } catch(err) {
+        console.log(err);
+        throw err;
+    };
 }

@@ -1,5 +1,5 @@
 {
-  "id": "2873ab38-84f9-47b2-9914-82f6231519ae",
+  "id": "209bbe56-c398-4c7f-a0fa-73de5d7a2048",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -618,6 +618,12 @@
         "price": {
           "name": "price",
           "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tags": {
+          "name": "tags",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },
